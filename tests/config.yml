@@ -1,19 +1,16 @@
-parameters:
-  cache.service: cache.service
-
 monolog:
     handlers:
         main:
             type:  test
             level: info
 cache:
-    provider: cache.service
+    provider: cache.service.array
 
 services:
    cache_warmer:
       class: Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate
       arguments: [""]
-   cache.service:
+   cache.service.array:
       class: Symfony\Component\Cache\Adapter\ArrayAdapter
    cache.testservice:
         class: CacheBundle\Tests\Helpers\CacheableClass
